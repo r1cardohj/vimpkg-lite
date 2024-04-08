@@ -1,4 +1,3 @@
-" base with no plug
 set tabstop=4
 syntax on
 set nu
@@ -11,18 +10,29 @@ filetype plugin indent on
 set completeopt=longest,menu
 set nocompatible
 set background=dark
-:colorscheme fruity
+
 " set netrw 
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
-"
+
+"切换回车为补全
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" 补全结束后窗口自动消失
+augroup complete
+  autocmd!
+  autocmd CompleteDone * pclose
+augroup end
+
 if has('gui_running')
+	colorscheme fruity
     if has("win32") || has("win64")
-        set guifont=Consolas:h16
+        set guifont=Consolas:h18
     else
         set guifont=MiscFixed\ Semi-Condensed\ 10
     endif
+else
+	colorscheme slate	
 endif
