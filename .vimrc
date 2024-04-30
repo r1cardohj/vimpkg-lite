@@ -12,20 +12,7 @@ filetype plugin indent on
 set completeopt=longest,menu
 set nocompatible
 set background=dark
-:colorscheme fruity
-" set netrw 
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_winsize = 25
-
-" set netrw 
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_winsize = 25
+set pumheight=10 " 设置补全菜单的高度为10行
 
 " set leader key
 let mapleader = "\<space>"
@@ -33,6 +20,23 @@ let mapleader = "\<space>"
 "切换回车为补全
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " 补全结束后窗口自动消失
+
+" tab split
+nnoremap <leader>st :tab split<CR>
+" close current tab
+nnoremap <leader>ct :tabc <CR> 
+" switch form
+nnoremap <leader>h :wincmd h<CR>  
+nnoremap <leader>j :wincmd j<CR>  
+nnoremap <leader>k :wincmd k<CR>  
+nnoremap <leader>l :wincmd l<CR>  
+
+
+"<Leader>[1-9] move to tab [1-9]
+for s:i in range(1, 9)
+  execute 'nnoremap <Leader>' . s:i . ' ' . s:i . 'gt'
+endfor
+
 augroup complete
   autocmd!
   autocmd CompleteDone * pclose
@@ -48,3 +52,10 @@ if has('gui_running')
 else
     colorscheme slate	
 endif
+
+" set netrw 
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
